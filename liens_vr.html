@@ -3,89 +3,288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mes liens VR - Meta Quest 3</title>
+<title>Mes Liens VR - Meta Quest 3</title>
 <style>
+:root {
+    --bg-color: #0f111a;
+    --card-bg: #1e2230;
+    --card-hover: #2a3044;
+    --accent-color: #818cf8;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --border-color: #2d3348;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    min-height: 100%;
+    width: 100%;
+}
+body {
+    min-height: 100vh;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    padding: 18px;
+    line-height: 1.35;
+}
+header {
+    text-align: center;
+    margin-bottom: 22px;
+}
+h1 {
+    font-size: clamp(25px, 2.2vw, 36px);
+    font-weight: 800;
+    color: #a5b4fc;
+    letter-spacing: 1px;
+}
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+}
+main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
+    width: 100%;
+}
+section {
+    min-width: 0;
+    background: rgba(255,255,255,0.015);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px;
+}
+h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 12px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid var(--border-color);
+}
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+}
+.card {
+    display: block;
+    min-width: 0;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+    padding: 12px 14px;
+    transition: background 0.15s, border-color 0.15s;
+}
+.card:hover,
+.card:focus {
+    background: var(--card-hover);
+    border-color: var(--accent-color);
+    outline: 2px solid transparent;
+}
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+.card-desc {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+    padding: 18px 0 4px;
+}
+/* Écrans larges : cartes plus compactes */
+@media (min-width: 1500px) {
     body {
-        font-family: Arial, sans-serif;
-        background-color: #171923;
-        color: white;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 30px;
-        font-size: 24px;
+        padding: 12px 18px;
+    }
+    header {
+        margin-bottom: 14px;
     }
     h1 {
-        text-align: center;
-        color: #8ab4ff;
-        font-size: 40px;
-        margin-bottom: 35px;
+        font-size: 30px;
+    }
+    .subtitle {
+        font-size: 13px;
+    }
+    section {
+        padding: 12px;
     }
     h2 {
-        color: #8ab4ff;
-        font-size: 30px;
-        margin-top: 35px;
-        border-bottom: 2px solid #454b65;
-        padding-bottom: 10px;
-    }
-    a {
-        display: block;
-        background-color: #292d40;
-        color: white;
-        padding: 24px;
-        margin: 18px 0;
-        border-radius: 14px;
-        text-decoration: none;
-        border: 2px solid #454b65;
-        font-size: 25px;
-    }
-    a:hover, a:focus {
-        background-color: #3c4668;
-        border-color: #8ab4ff;
-    }
-    .description {
-        color: #c4c9d8;
         font-size: 18px;
-        margin-top: 8px;
+        margin-bottom: 10px;
+        padding-bottom: 7px;
     }
-    .footer {
-        text-align: center;
-        color: #999;
-        font-size: 16px;
-        margin-top: 40px;
+    .grid {
+        gap: 7px;
     }
+    .card {
+        padding: 9px 12px;
+    }
+    .card-title {
+        font-size: 15px;
+        line-height: 1.3;
+    }
+    .card-desc {
+        font-size: 12px;
+        margin-top: 3px;
+    }
+    footer {
+        padding-top: 10px;
+    }
+}
+/* Écrans peu hauts : conserver le défilement vertical */
+@media (max-height: 600px) {
+    body {
+        padding: 10px 14px;
+    }
+    header {
+        margin-bottom: 10px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    .subtitle {
+        font-size: 12px;
+    }
+    main {
+        gap: 10px;
+    }
+    section {
+        padding: 9px;
+    }
+    h2 {
+        font-size: 15px;
+        margin-bottom: 7px;
+        padding-bottom: 5px;
+    }
+    .grid {
+        gap: 5px;
+    }
+    .card {
+        padding: 7px 9px;
+    }
+    .card-title {
+        font-size: 12px;
+        line-height: 1.3;
+    }
+    .card-desc {
+        font-size: 10px;
+        margin-top: 2px;
+    }
+    footer {
+        padding-top: 8px;
+    }
+}
+/* Téléphones et fenêtres étroites */
+@media (max-width: 700px) {
+    body {
+        padding: 12px;
+    }
+    header {
+        margin-bottom: 16px;
+    }
+    main {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    section {
+        padding: 12px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .card {
+        padding: 11px 12px;
+    }
+    .card-title {
+        font-size: 15px;
+    }
+    .card-desc {
+        font-size: 12px;
+    }
+}
 </style>
 </head>
 <body>
-<h1>MES LIENS VR</h1>
-<h2>🌐 Sites Internet</h2>
-<a href="https://www.google.com">
-    Google
-    <div class="description">Moteur de recherche</div>
-</a>
-<a href="https://www.youtube.com">
-    YouTube
-    <div class="description">Vidéos et contenus immersifs</div>
-</a>
-<a href="https://www.wikipedia.org">
-    Wikipédia
-    <div class="description">Encyclopédie en ligne</div>
-</a>
-<h2>🥽 Vidéos VR</h2>
-<a href="https://www.youtube.com/results?search_query=360+vr">
-    Vidéos à 360°
-    <div class="description">Rechercher des vidéos immersives</div>
-</a>
-<a href="https://www.youtube.com/results?search_query=VR+180+3D">
-    Vidéos VR 180° en 3D
-    <div class="description">Rechercher des vidéos stéréoscopiques</div>
-</a>
-<h2>🔎 Recherche</h2>
-<a href="https://www.google.com">
-    Effectuer une recherche Google
-    <div class="description">Rechercher un site ou une information</div>
-</a>
-<div class="footer">
-    Page personnelle de liens pour Meta Quest 3
+<header>
+    <h1>MES LIENS VR</h1>
+    <p class="subtitle">Portail de navigation • Meta Quest 3</p>
+</header>
+<main>
+<section>
+    <h2>🌐 Sites Internet</h2>
+<div class="grid">
+    <a href="https://enthdf.fr" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">ENT Hauts-de-France</div>
+        <div class="card-desc">Espace Numérique de Travail</div>
+    </a>
+    <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Google</div>
+        <div class="card-desc">Moteur de recherche</div>
+    </a>
+    <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">YouTube</div>
+        <div class="card-desc">Vidéos et contenus immersifs</div>
+    </a>
+    <a href="https://www.wikipedia.org" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Wikipédia</div>
+        <div class="card-desc">Encyclopédie collaborative en ligne</div>
+    </a>
 </div>
+</section>
+<section>
+    <h2>🥽 Vidéos VR &amp; 360°</h2>
+<div class="grid">
+    <a href="https://youtu.be/oUIitVmNKCE?si=far1DikaIGYRQu3o" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Notre-Dame de Paris • 360°</div>
+        <div class="card-desc">Visite virtuelle par TV5MONDE</div>
+    </a>
+    <a href="https://youtu.be/hWKb5r-UMt8?si=Z6aHO0HuWDc7T3oF" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Tour Eiffel • VR 360°</div>
+        <div class="card-desc">Paris et réalité virtuelle</div>
+    </a>
+    <a href="https://youtu.be/U65jVfyhf98?si=gNIy73k7-H4KnVB5" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Paris, France 🇫🇷 en 8K ULTRA HD 60 FPS - The City of Lights</div>
+        <div class="card-desc">Vidéo immersive de Paris en 8K</div>
+    </a>
+    <a href="https://youtu.be/aQm4TDDiEdc?si=YO-YWazH_so_LCyN" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">East Ridge of the Eiger</div>
+        <div class="card-desc">Ascension en haute montagne</div>
+    </a>
+    <a href="https://youtu.be/HiCX09V7iac?si=nEO0qHk39TZypdLv" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Égypte • Pyramides de Gizeh</div>
+        <div class="card-desc">Survol des pyramides et du Sphinx</div>
+    </a>
+    <a href="https://youtu.be/CHSnz0bCaUk?si=H05hjMWNYWsshkgU" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Alaska • 8K HDR</div>
+        <div class="card-desc">Paysages naturels immersifs</div>
+    </a>
+    <a href="https://youtu.be/5gQixDhHrPI?si=aFPE5q198qqAqQoI" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Venise • 8K HDR</div>
+        <div class="card-desc">Canaux et monuments italiens</div>
+    </a>
+</div>
+</section>
+</main>
+<footer>
+    Portail personnel • Meta Quest 3
+</footer>
 </body>
 </html>
